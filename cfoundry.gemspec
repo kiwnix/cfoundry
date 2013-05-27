@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency "multi_json", "~> 1.7"
   s.add_dependency "rubyzip", "~> 0.9"
   s.add_dependency "cf-uaa-lib", "~> 1.3.10"
-  s.add_dependency "activemodel", "~> 3.2.13"
+  s.add_dependency "activemodel", ">= 3.2.13", "<= 4.0.0.rc1"
 
   s.add_development_dependency "rake", ">= 0.9"
   s.add_development_dependency "rspec", "~> 2.11"
