@@ -14,6 +14,19 @@ module CFoundry::V1
     # A token may also be provided to skip the login step.
     def initialize(target = "http://api.cloudfoundry.com", token = nil)
       @base = Base.new(target, token)
+      @base.instance_eval{@uaa = begin
+              endpoint = info[:authorization_endpoint]
+
+              if endpoint
+                uaa = CFoundry::UAAClient.new(endpoint)
+                uaa.trace = trace
+                uaa.token = token
+                uaa.client_id = 'vmc'
+                uaa
+              else
+                nil
+              end
+            end}
     end
 
     def version
@@ -189,5 +202,6 @@ module CFoundry::V1
     def logged_in?
       !!@base.token
     end
+
   end
 end
